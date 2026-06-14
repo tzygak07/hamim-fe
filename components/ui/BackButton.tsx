@@ -11,7 +11,6 @@ export default function BackButton({ onClick, title = "Kembali" }: BackButtonPro
   const router = useRouter();
 
   return (
-    // PERUBAHAN: pt-12 diubah menjadi pt-6 (atau bisa pt-4 jika masih kurang nempel ke atas)
     <div className="flex px-6 pb-4 pt-6">
       <button
         onClick={onClick ? onClick : () => router.back()}

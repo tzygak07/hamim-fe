@@ -13,7 +13,6 @@ export default function PromoSlider() {
     { id: 3, src: "/promo-images/banner3.png" },
   ];
 
-  // 1. MENGEMBALIKAN FITUR AUTO-SLIDE (Ganti setiap 3 detik)
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
@@ -21,7 +20,6 @@ export default function PromoSlider() {
     return () => clearInterval(timer);
   }, [banners.length]);
 
-  // 2. LOGIKA MENDETEKSI GESERAN (SWIPE) MOUSE & TOUCH
   const handleDragStart = (clientX: number) => {
     setStartX(clientX);
   };
@@ -29,13 +27,9 @@ export default function PromoSlider() {
   const handleDragEnd = (clientX: number) => {
     if (startX === null) return;
     const distance = startX - clientX;
-    
-    // Geser ke Kiri (Next)
     if (distance > 50) {
       setActiveIndex((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
-    } 
-    // Geser ke Kanan (Prev)
-    else if (distance < -50) {
+    } else if (distance < -50) {
       setActiveIndex((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
     }
     setStartX(null);
@@ -43,14 +37,10 @@ export default function PromoSlider() {
 
   return (
     <div className="mt-2 flex flex-col items-center w-full overflow-hidden">
-      
-      {/* AREA SLIDER (Dengan kursor yang bisa digenggam/grab) */}
       <div 
         className="relative flex items-center justify-center w-[327px] h-[130px] cursor-grab active:cursor-grabbing"
-        // Sensor untuk HP (Touch)
         onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
         onTouchEnd={(e) => handleDragEnd(e.changedTouches[0].clientX)}
-        // Sensor untuk Laptop/PC (Mouse)
         onMouseDown={(e) => handleDragStart(e.clientX)}
         onMouseUp={(e) => handleDragEnd(e.clientX)}
         onMouseLeave={(e) => {
@@ -58,7 +48,6 @@ export default function PromoSlider() {
         }}
       >
         {banners.map((banner, index) => {
-          // Logika untuk menentukan status kartu (Aktif, Berikutnya, atau Sebelumnya)
           const isActive = index === activeIndex;
           const isNext = index === (activeIndex === banners.length - 1 ? 0 : activeIndex + 1);
           const isPrev = index === (activeIndex === 0 ? banners.length - 1 : activeIndex - 1);
@@ -77,7 +66,6 @@ export default function PromoSlider() {
                 src={banner.src} 
                 alt={`Promo ${banner.id}`} 
                 fill 
-                // pointer-events-none wajib agar gambar tidak tidak sengaja "ter-drag" oleh browser bawaan
                 className="object-cover pointer-events-none" 
               />
             </div>
@@ -85,7 +73,6 @@ export default function PromoSlider() {
         })}
       </div>
 
-      {/* Indikator Titik (Dots) */}
       <div className="mt-4 flex justify-center gap-2">
         {banners.map((_, index) => (
           <div

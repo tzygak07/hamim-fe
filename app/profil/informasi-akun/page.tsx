@@ -35,7 +35,6 @@ export default function InformasiAkunPage() {
       
       <BackButton title="Informasi Akun" />
 
-      {/* 1. GRUP PROFIL (fp, nu, tb) */}
       <div className="flex flex-col items-center pt-2">
         <div className="relative h-20 w-20">
           <div className="h-full w-full overflow-hidden rounded-full bg-third/20">
@@ -51,13 +50,10 @@ export default function InformasiAkunPage() {
           </button>
         </div>
         
-        {/* PERUBAHAN: Jarak 8px (mt-2) dan ukuran font 16px persis seperti di ProfilPage */}
         <h2 className="mt-2 text-[16px] font-bold text-dark">{initialData.name}</h2>
-        {/* PERUBAHAN: Jarak 8px (mt-2) */}
         <p className="mt-2 text-xs text-third">Bergabung sejak 12 Juni 2024</p>
       </div>
 
-      {/* 2 & 3. GRUP FORM & BUTTON (Jarak dari grup profil 22px via pt-[22px]) */}
       <div className="flex flex-col px-6 pt-[22px] pb-12 w-full">
         
         <Input 
@@ -76,8 +72,6 @@ export default function InformasiAkunPage() {
           onChange={handleChange}
         />
 
-        {/* Karena komponen Input sudah memiliki mb-4 (16px), 
-            maka jarak ke Button di bawahnya otomatis menjadi 16px! */}
         <Input 
           label="Nomor Telepon"
           type="tel"
@@ -86,7 +80,6 @@ export default function InformasiAkunPage() {
           onChange={handleChange}
         />
 
-        {/* PERUBAHAN: Menghapus mt-auto agar menempel dengan Input terakhir */}
         <Button disabled={isButtonDisabled} onClick={handleSimpan}>
           Simpan Profil
         </Button>

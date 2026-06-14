@@ -26,8 +26,6 @@ export default function RekomendasiKelas() {
 
   return (
     <div className="mt-8 flex flex-col">
-      
-      {/* Header ke konten berjarak 16px (mb-[16px]) */}
       <div className="mb-[16px] flex items-center justify-between px-6">
         <h2 className="text-[16px] font-bold text-dark">Hanya Untukmu</h2>
         <Link 
@@ -38,7 +36,6 @@ export default function RekomendasiKelas() {
         </Link>
       </div>
 
-      {/* Jarak antar card 16px (gap-[16px]) */}
       <div 
         className="flex w-full overflow-x-auto px-6 gap-[16px] pb-4 snap-x"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -47,43 +44,33 @@ export default function RekomendasiKelas() {
           <Link
             key={item.id}
             href={`/kelas/${item.id}`}
-            // Ukuran Card 212 x 237
             className="flex w-[212px] h-[237px] shrink-0 snap-center flex-col overflow-hidden rounded-[16px] border border-third/20 bg-white shadow-sm transition-transform hover:-translate-y-1"
           >
-            {/* Ukuran Gambar 212 x 117 */}
             <div className="relative h-[117px] w-[212px] bg-third/20">
               <Image src={item.image} alt={item.title} fill className="object-cover" />
             </div>
 
-            {/* Ukuran Konten 212 x 120, Gap 8px antar elemen */}
             <div className="flex h-[120px] w-[212px] flex-col p-3 gap-[8px]">
-              
-              {/* Badge: Padding 8, Radius 20, Font 10 */}
               <div className="w-max rounded-[20px] bg-primary p-[8px] text-[10px] font-bold text-white leading-none">
                 {item.badge}
               </div>
 
-              {/* Judul: Font 14 */}
               <h3 className="text-[14px] font-bold leading-tight text-dark line-clamp-1">
                 {item.title}
               </h3>
 
-              {/* Harga: Font 16 */}
               <p className="text-[16px] font-bold text-primary leading-none">
                 {item.price}
               </p>
 
-              {/* Ustaz: Font 11 */}
               <div className="flex items-center gap-[6px] text-third">
                 <IoPerson className="text-[12px]" />
                 <span className="text-[11px] font-medium leading-none">{item.ustaz}</span>
               </div>
-              
             </div>
           </Link>
         ))}
       </div>
-
     </div>
   );
 }

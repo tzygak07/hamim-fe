@@ -2,9 +2,8 @@
 
 import { InputHTMLAttributes } from "react";
 
-// extends InputHTMLAttributes agar mewarisi semua sifat asli <input> HTML
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string; // Wajib mengirimkan teks label
+  label: string;
 }
 
 export default function Input({ label, ...props }: InputProps) {

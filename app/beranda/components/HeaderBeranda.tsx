@@ -6,10 +6,7 @@ import { BsQrCode } from "react-icons/bs";
 
 export default function HeaderBeranda() {
   return (
-    // PERUBAHAN: pt-0 diubah menjadi pt-8 (padding-top 32px) sebagai jarak optimal
     <header className="flex items-center justify-between px-6 pt-8 pb-4 bg-white">
-      
-      {/* KIRI: Info Waktu dan Lokasi (Gap 1px) */}
       <div className="flex flex-col gap-[1px]">
         <div className="flex items-center gap-1 text-third">
           <IoLocationOutline className="text-sm" />
@@ -21,7 +18,6 @@ export default function HeaderBeranda() {
         </p>
       </div>
 
-      {/* KANAN: Tombol Aksi (Gap 6px) */}
       <div className="flex items-center gap-[6px]">
         <button className="text-[24px] text-primary transition-transform hover:scale-105 active:scale-95">
           <BsQrCode />

@@ -18,8 +18,6 @@ export default function BottomNavigation() {
 
   return (
     <nav className="fixed bottom-0 left-0 z-50 w-full rounded-t-3xl border-t border-third/10 bg-white shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.05)]">
-      
-      {/* Padding Y: 8, Padding X: 16, Gap: 16 */}
       <div className="flex items-center justify-between px-[16px] py-[8px] gap-[16px]">
         
         {navItems.map((item, index) => {
@@ -34,8 +32,6 @@ export default function BottomNavigation() {
               <div className={isActive ? "text-primary" : "text-third/60"}>
                 {isActive ? item.iconActive : item.iconInactive}
               </div>
-              
-              {/* Font: 14 Bold */}
               <span 
                 className={`text-[14px] font-bold ${
                   isActive ? "text-primary" : "text-third/60"
