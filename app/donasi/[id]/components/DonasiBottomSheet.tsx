@@ -7,12 +7,20 @@ interface DonasiBottomSheetProps {
   onClose: () => void;
 }
 
+const PRESETS = [
+  { id: 1, emoji: "😊", amount: "Rp15.000" },
+  { id: 2, emoji: "😀", amount: "Rp15.000" },
+  { id: 3, emoji: "😍", amount: "Rp25.000" },
+  { id: 4, emoji: "😎", amount: "Rp50.000" },
+];
+
 export default function DonasiBottomSheet({ isOpen, onClose }: DonasiBottomSheetProps) {
   const [customAmount, setCustomAmount] = useState("");
   const [isMounted, setIsMounted] = useState(isOpen);
   const [isVisible, setIsVisible] = useState(isOpen);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  
   const dragStartYRef = useRef(0);
   const dragLastYRef = useRef(0);
   const dragStartTimeRef = useRef(0);
@@ -75,24 +83,19 @@ export default function DonasiBottomSheet({ isOpen, onClose }: DonasiBottomSheet
 
   if (!isMounted) return null;
 
-  const presets = [
-    { id: 1, emoji: "😊", amount: "Rp15.000" },
-    { id: 2, emoji: "😀", amount: "Rp15.000" },
-    { id: 3, emoji: "😍", amount: "Rp25.000" },
-    { id: 4, emoji: "😎", amount: "Rp50.000" },
-  ];
-
   return (
     <div
-      className={`fixed inset-0 z-60 flex flex-col justify-end bg-black/40 transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[60] flex flex-col justify-end bg-black/40 transition-opacity duration-500 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
       <div className="absolute inset-0" onClick={onClose} />
 
       <div
-        className={`relative mx-auto flex w-full max-w-103 flex-col rounded-t-3xl bg-white px-5 pb-6 pt-3 shadow-[0_-20px_40px_-24px_rgba(0,0,0,0.25)] will-change-transform ${
-          isDragging ? "transition-none" : "transition-[transform] duration-700 cubic-bezier(0.16, 1, 0.3, 1)"
+        className={`relative mx-auto flex w-full max-w-[412px] flex-col rounded-t-[24px] bg-white px-5 pb-6 pt-3 shadow-[0_-20px_40px_-24px_rgba(0,0,0,0.25)] will-change-transform ${
+          isDragging
+            ? "transition-none"
+            : "transition-[transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
         }`}
         style={{
           transform: isVisible
@@ -106,7 +109,7 @@ export default function DonasiBottomSheet({ isOpen, onClose }: DonasiBottomSheet
         <button
           type="button"
           aria-label="Geser untuk menutup"
-          className="mx-auto mb-5 h-1 w-10 rounded-full bg-[#E0E0E0]"
+          className="mx-auto mb-5 h-1 w-10 shrink-0 touch-none rounded-full bg-[#E0E0E0]"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -114,7 +117,7 @@ export default function DonasiBottomSheet({ isOpen, onClose }: DonasiBottomSheet
         />
 
         <div className="flex flex-col gap-2">
-          {presets.map((item) => (
+          {PRESETS.map((item) => (
             <button
               type="button"
               key={item.id}
