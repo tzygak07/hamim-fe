@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 
 interface DonasiCardProps {
+  id: number;
   image: string;
   sisaHari: string;
   title: string;
@@ -13,6 +15,7 @@ interface DonasiCardProps {
 }
 
 export default function DonasiCard({
+  id,
   image,
   sisaHari,
   title,
@@ -20,6 +23,8 @@ export default function DonasiCard({
   terkumpul,
   isSaved = false,
 }: DonasiCardProps) {
+  const router = useRouter();
+
   const progress = Math.min((terkumpul / target) * 100, 100);
 
   const formatRupiah = (angka: number) => {
@@ -31,7 +36,10 @@ export default function DonasiCard({
   };
 
   return (
-    <div className="flex w-full max-w-[378px] flex-col overflow-hidden rounded-xl border border-third/10 bg-white shadow-sm">
+    <div
+      onClick={() => router.push(`/donasi/${id}`)}
+      className="flex w-full max-w-[378px] cursor-pointer flex-col overflow-hidden rounded-xl border border-third/10 bg-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+    >
       <div className="relative h-[117px] w-full bg-third/20">
         <Image src={image} alt={title} fill className="object-cover" />
       </div>
@@ -48,8 +56,8 @@ export default function DonasiCard({
         </h3>
 
         <div className="my-[12px] h-[6px] w-full overflow-hidden rounded-full bg-third/20">
-          <div 
-            className="h-full rounded-full bg-primary transition-all duration-500" 
+          <div
+            className="h-full rounded-full bg-primary transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -70,11 +78,23 @@ export default function DonasiCard({
         </div>
 
         <div className="mt-[12px] flex items-center gap-[12px]">
-          <button className="flex-1 rounded-full bg-primary py-3 text-[14px] font-bold text-white transition-opacity hover:opacity-90 active:scale-[0.98]">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/donasi/${id}`);
+            }}
+            className="flex-1 rounded-full bg-primary py-3 text-[14px] font-bold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
+          >
             Donasi Sekarang
           </button>
-          
-          <button className="flex items-center justify-center text-third transition-colors hover:text-primary">
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(`Bookmark diklik untuk ID: ${id}`);
+            }}
+            className="flex items-center justify-center text-third transition-colors hover:text-primary"
+          >
             {isSaved ? (
               <BsBookmarkFill className="h-[24px] w-[24px] text-primary" />
             ) : (
@@ -82,7 +102,6 @@ export default function DonasiCard({
             )}
           </button>
         </div>
-
       </div>
     </div>
   );
