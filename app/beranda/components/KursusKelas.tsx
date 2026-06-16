@@ -4,15 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoPerson } from "react-icons/io5";
 
-export default function RekomendasiKelas() {
-  const rekomendasiData = [
+export default function KursusKelas() {
+  const kursusData = [
     {
       id: 1,
       title: "Belajar Irama Bayati Hamim",
       badge: "Free Access",
       price: "Gratis",
       ustaz: "Ust. Abu Afifah",
-      image: "/rekomendasi-images/kelas1.png",
+      image: "/kursus-images/kelas1.png",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export default function RekomendasiKelas() {
       badge: "Free Access",
       price: "Gratis",
       ustaz: "Ust. Abu Afifah",
-      image: "/rekomendasi-images/kelas2.png",
+      image: "/kursus-images/kelas2.png",
     },
   ];
 
@@ -29,7 +29,7 @@ export default function RekomendasiKelas() {
       <div className="mb-[16px] flex items-center justify-between px-6">
         <h2 className="text-[16px] font-bold text-dark">Hanya Untukmu</h2>
         <Link 
-          href="/rekomendasi" 
+          href="/kursus" 
           className="rounded-md bg-[#FFF4EB] px-3 py-1 text-[12px] font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
         >
           Selengkapnya
@@ -40,7 +40,7 @@ export default function RekomendasiKelas() {
         className="flex w-full overflow-x-auto px-6 gap-[16px] pb-4 snap-x"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {rekomendasiData.map((item) => (
+        {kursusData.map((item) => (
           <Link
             key={item.id}
             href={`/kelas/${item.id}`}

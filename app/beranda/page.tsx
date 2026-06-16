@@ -3,7 +3,7 @@
 import HeaderBeranda from "./components/HeaderBeranda";
 import PromoSlider from "./components/PromoSlider";
 import MenuHafalan from "./components/MenuHafalan";
-import RekomendasiKelas from "./components/RekomendasiKelas";
+import RekomendasiKelas from "./components/KursusKelas";
 
 import BottomNavigation from "@/components/ui/BottomNavigation";
 
