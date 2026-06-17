@@ -28,7 +28,7 @@ export default function KursusCard({
   
   return (
     <Link
-      href={`/kelas/${id}`}
+      href={`/kursus/${id}`}
       className="flex h-[237px] w-[212px] shrink-0 snap-center flex-col overflow-hidden rounded-[16px] border border-third/20 bg-white shadow-sm transition-transform hover:-translate-y-1"
     >
       <div className="relative h-[117px] w-full bg-third/20">
