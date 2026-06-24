@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import BackButton from "@/components/ui/BackButton";
+import EmptyState from "@/components/ui/EmptyState";
 import KursusBanner from "./components/KursusBanner";
 import KursusCard from "./components/KursusCard";
+import KursusTabs from "./components/KursusTabs";
+import MyClassCard from "./components/MyClassCard";
 
 export default function KursusPage() {
   const [activeTab, setActiveTab] = useState("Semua");
@@ -50,6 +53,17 @@ export default function KursusPage() {
     },
   ];
 
+  // Kosongkan array ini untuk melihat tampilan Empty State
+ const dataKelasSaya = [
+    {
+      id: 1,
+      title: "Belajar Irama Bayati Hamim",
+      badgeText: "Akses Terbuka",
+      ustaz: "Ust. Abu Afifah",
+      image: "/kursus-images/kelas1.png",
+    }
+  ];
+
   return (
     <main className="relative mx-auto flex min-h-[100dvh] w-full max-w-[412px] flex-col overflow-x-hidden bg-white font-sans text-dark pb-10">
       <div className="sticky top-0 z-50 w-full bg-white">
@@ -61,24 +75,12 @@ export default function KursusPage() {
         <KursusBanner />
       </div>
 
-      <div className="mt-[24px] flex px-6 gap-[14px] mb-[19px]">
-        {["Semua", "Kelas Saya"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`rounded-lg px-[16px] py-[12px] transition-colors ${
-              activeTab === tab
-                ? "bg-primary text-[14px] font-bold text-white"
-                : "bg-third/10 text-[14px] font-normal text-third hover:bg-third/20"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="mt-[24px] px-6">
+        <KursusTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
 
       {activeTab === "Semua" && (
-        <div className="flex flex-col gap-[24px]">
+        <div className="mt-[20px] flex flex-col gap-[24px]">
           <div className="flex flex-col w-full">
             <h2 className="px-6 text-[16px] font-bold text-dark mb-[16px]">
               Hanya Untukmu
@@ -110,8 +112,39 @@ export default function KursusPage() {
       )}
 
       {activeTab === "Kelas Saya" && (
-        <div className="flex px-6 items-center justify-center py-10">
-          <span className="text-sm text-third">Anda belum memiliki kelas.</span>
+        <div className="mt-[20px] flex flex-col px-6">
+          {dataKelasSaya.length > 0 ? (
+            <div className="flex flex-col gap-[16px]">
+              {dataKelasSaya.map((item) => (
+                <MyClassCard 
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  badgeText={item.badgeText}
+                  ustaz={item.ustaz}
+                  image={item.image}
+                />
+              ))}
+            </div>
+          ) : (
+            /* Menyesuaikan dengan EmptyState global milikmu */
+            <div className="flex flex-col items-center">
+              <EmptyState 
+                imageSrc="/order-images/notFound.png"
+                title="Yahh.. Anda Tidak Memiliki Kursus"
+                description="Dapatkan kelas sekarang juga dan jangan sampai kelewatan."
+                className="mt-[40px]" 
+              />
+              
+              {/* Tombol aksi diletakkan di luar EmptyState */}
+              <button
+                onClick={() => setActiveTab("Semua")}
+                className="mt-[24px] rounded-[120px] bg-primary px-[24px] py-[12px] text-[14px] font-bold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
+              >
+                Lihat Daftar Kursus
+              </button>
+            </div>
+          )}
         </div>
       )}
     </main>
