@@ -6,6 +6,8 @@ interface EmptyStateProps {
   title: string;
   description?: React.ReactNode;
   className?: string;
+  buttonText?: string;
+  onClick?: () => void;
 }
 
 export default function EmptyState({
