@@ -9,20 +9,22 @@ export default function AcaraTabs({ activeTab, setActiveTab }: AcaraTabsProps) {
   const tabs = ["Semua", "Sedang Berlangsung", "Selesai"];
 
   return (
-    <div className="flex w-full gap-[8px] px-6 mt-[24px] overflow-x-auto no-scrollbar">
-      {tabs.map((tab) => (
-        <button
-          key={tab}
-          onClick={() => setActiveTab(tab)}
-          className={`rounded-full px-[16px] py-[8px] text-[14px] transition-all shrink-0 ${
-            activeTab === tab
-              ? "bg-primary font-bold text-white shadow-sm"
-              : "bg-third/10 font-normal text-third hover:bg-third/20"
-          }`}
-        >
-          {tab}
-        </button>
-      ))}
+    <div className="no-scrollbar mx-auto mt-[24px] flex w-full max-w-[412px] overflow-x-auto px-[19px]">
+      <div className="flex w-max gap-[14px]">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`shrink-0 whitespace-nowrap rounded-[8px] px-[16px] py-[12px] transition-all ${
+              activeTab === tab
+                ? "bg-primary text-[14px] font-bold text-white shadow-sm"
+                : "bg-third/10 text-[14px] font-normal text-third hover:bg-third/20"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

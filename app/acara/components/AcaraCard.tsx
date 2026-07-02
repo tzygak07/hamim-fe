@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface AcaraCardProps {
   id: number;
@@ -20,35 +21,50 @@ export default function AcaraCard({
   currentPrice,
   image,
 }: AcaraCardProps) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Link
       href={`/acara/${id}`}
-      className="flex flex-col overflow-hidden rounded-[16px] border border-third/10 bg-white shadow-sm transition-transform hover:-translate-y-1"
+      className="flex h-full w-full flex-col overflow-hidden rounded-[16px] border border-third/10 bg-white shadow-sm transition-transform hover:-translate-y-1"
     >
-      <div className="relative h-[110px] w-full bg-third/10">
-        <Image src={image} alt={title} fill className="object-cover" />
+      <div className="relative h-[131px] w-full shrink-0 bg-third/10">
+        {!imgError ? (
+          <Image 
+            src={image} 
+            alt={title} 
+            fill 
+            className="object-cover" 
+            onError={() => setImgError(true)} 
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-third/10 text-[10px] text-third">
+          </div>
+        )}
       </div>
 
-      <div className="flex flex-col p-[12px] gap-[6px]">
-        <div className="flex">
-          <div className="rounded-full bg-[#F2994A]/10 px-[8px] py-[4px]">
-            <span className="text-[10px] font-semibold leading-none text-primary">
-              {badgeText}
-            </span>
-          </div>
+      <div className="flex flex-1 flex-col gap-[4px] p-[12px]">
+        <div className="flex w-max items-center justify-center rounded-[20px] bg-primary p-[8px]">
+          <span className="text-[10px] font-semibold leading-none text-white">
+            {badgeText}
+          </span>
         </div>
 
-        <h3 className="text-[12px] font-bold leading-snug text-dark line-clamp-2 h-[36px]">
+        <h3 className="line-clamp-3 text-[14px] font-normal leading-snug text-dark">
           {title}
         </h3>
 
-        <div className="flex flex-col mt-auto">
+        <div className="mt-auto flex flex-col">
           {originalPrice && (
-            <span className="text-[10px] font-normal text-primary line-through leading-none mb-[2px]">
-              {originalPrice}
-            </span>
+            <div className="relative mb-[2px] w-max">
+              <span className="text-[8px] font-normal text-primary">
+                {originalPrice}
+              </span>
+              <div className="absolute left-0 top-1/2 h-[1px] w-full -translate-y-1/2 bg-primary"></div>
+            </div>
           )}
-          <span className="text-[14px] font-bold leading-none text-primary">
+          
+          <span className="text-[16px] font-bold leading-none text-primary">
             {currentPrice}
           </span>
         </div>

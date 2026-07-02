@@ -13,16 +13,17 @@ const acaraData = [
     badgeText: "Terbatas",
     originalPrice: "Rp450.000",
     currentPrice: "Rp250.000",
-    image: "/kursus-images/kelas1.png",
-    status: "Sedang Berlangsung",
+    image: "/kursus-images/kelas1.png", 
+    status: "Semua",
   },
   {
     id: 2,
     title: "TA-MAT Al-Quran (Tahsin Maqomat) Metode Maqdis",
     badgeText: "Terbatas",
+    originalPrice: "Rp450.000",
     currentPrice: "Gratis",
     image: "/kursus-images/kelas2.png",
-    status: "Sedang Berlangsung",
+    status: "Semua",
   },
   {
     id: 3,
@@ -39,7 +40,7 @@ const acaraData = [
     badgeText: "Terbatas",
     currentPrice: "Gratis",
     image: "/kursus-images/kelas2.png",
-    status: "Selesai",
+    status: "Sedang Berlangsung",
   },
 ];
 
@@ -52,7 +53,7 @@ export default function AcaraPage() {
   });
 
   return (
-    <main className="relative mx-auto flex min-h-[100dvh] w-full max-w-[412px] flex-col overflow-x-hidden bg-white font-sans text-dark pb-24">
+    <main className="relative mx-auto flex min-h-[100dvh] w-full max-w-[412px] flex-col overflow-x-hidden bg-white pb-24 font-sans text-dark">
       <div className="sticky top-0 z-50 w-full bg-white">
         <BackButton title="Acara" />
         <div className="w-full border-b border-third/10" />
@@ -62,7 +63,7 @@ export default function AcaraPage() {
 
       <AcaraTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="grid grid-cols-2 gap-[16px] px-6 mt-[20px]">
+      <div className="mx-auto mt-[24px] grid w-full grid-cols-1 gap-x-[8px] gap-y-[24px] px-[19px] min-[375px]:grid-cols-2">
         {filteredAcara.map((acara) => (
           <AcaraCard
             key={acara.id}
