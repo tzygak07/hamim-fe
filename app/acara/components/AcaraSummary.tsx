@@ -26,7 +26,6 @@ export default function AcaraSummary({ myEventsCount, upcomingEventTitle }: Acar
         <FiChevronRight className="h-[24px] w-[24px] shrink-0 text-primary" />
       </Link>
 
-      {/* Acara Akan Datang: Masih div biasa atau bisa kamu Link juga jika ingin */}
       <div className="flex h-[71px] w-full shrink-0 cursor-pointer items-center justify-between rounded-[12px] border border-third/10 bg-white p-[12px] shadow-sm transition-colors hover:bg-gray-50 min-[375px]:flex-1">
         <div className="flex w-full flex-col justify-center overflow-hidden pr-2">
           <span className="text-[12px] font-normal leading-none text-third">Acara Akan Datang</span>

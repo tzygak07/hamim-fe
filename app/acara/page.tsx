@@ -3,14 +3,13 @@
 import { useState } from "react";
 import BackButton from "@/components/ui/BackButton";
 import EmptyState from "@/components/ui/EmptyState";
+import BottomNavigation from "@/components/ui/BottomNavigation";
 import AcaraSummary from "./components/AcaraSummary";
 import AcaraTabs from "./components/AcaraTabs";
 import AcaraCard from "./components/AcaraCard";
 import AcaraListCard from "./components/AcaraListCard";
 
-// Data dummy sudah diisi lengkap untuk semua tab
 const acaraData = [
-  // Data Tab "Semua"
   {
     id: 1,
     title: "TA-MAT Al-Quran (Tahsin Maqomat) Metode Maqdis",
@@ -31,12 +30,10 @@ const acaraData = [
     image: "/kursus-images/kelas2.png",
     status: "Semua",
   },
-  
-  // Data Tab "Sedang Berlangsung"
   {
     id: 3,
     title: "TA-MAT Al-Quran (Tahsin Maqomat) Metode Maqdis",
-    badgeText: "Terbatas", // Tidak dipakai di list card, tapi dibiarkan untuk konsistensi data
+    badgeText: "Terbatas",
     originalPrice: "Rp450.000",
     currentPrice: "Rp250.000",
     datetime: "25 Oktober 2024 08:00 WIB",
@@ -53,8 +50,6 @@ const acaraData = [
     image: "/kursus-images/kelas2.png",
     status: "Sedang Berlangsung",
   },
-
-  // Data Tab "Selesai"
   {
     id: 5,
     title: "TA-MAT Al-Quran (Tahsin Maqomat) Metode Maqdis",
@@ -96,10 +91,8 @@ export default function AcaraPage() {
 
       <AcaraTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* RENDER KONTEN BERDASARKAN TAB */}
       <div className="mt-[24px] flex w-full flex-col">
         {filteredAcara.length === 0 ? (
-          /* TAMPILAN EMPTY STATE */
           <div className="mt-8 px-[19px]">
             <EmptyState
               title={`Tidak Ada Acara ${activeTab === "Sedang Berlangsung" ? "Sedang Berlangsung" : "Sudah Selesai"}`}
@@ -109,7 +102,6 @@ export default function AcaraPage() {
             />
           </div>
         ) : activeTab === "Semua" ? (
-          /* TAMPILAN TAB "SEMUA" (GRID CARD) */
           <div className="grid w-full grid-cols-1 gap-x-[8px] gap-y-[24px] px-[19px] min-[375px]:grid-cols-2">
             {filteredAcara.map((acara) => (
               <AcaraCard
@@ -124,7 +116,6 @@ export default function AcaraPage() {
             ))}
           </div>
         ) : (
-          /* TAMPILAN TAB "SEDANG BERLANGSUNG" & "SELESAI" (LIST CARD) */
           <div className="flex w-full flex-col">
             {filteredAcara.map((acara) => (
               <AcaraListCard
@@ -139,6 +130,7 @@ export default function AcaraPage() {
           </div>
         )}
       </div>
+      <BottomNavigation />
     </main>
   );
 }
