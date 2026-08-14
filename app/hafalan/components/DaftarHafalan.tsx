@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 export default function DaftarHafalan() {
   const [activeTab, setActiveTab] = useState("Juz");
+  const router = useRouter();
 
   const dataJuz = [
     { id: 1, title: "Juz 30", status: "Tersedia" },
@@ -53,6 +55,7 @@ export default function DaftarHafalan() {
         {currentData.map((item) => (
           <button 
             key={item.id}
+            onClick={() => router.push(`/hafalan/${item.id}`)}
             className="flex items-center justify-between border-b border-third/10 py-4 transition-colors hover:bg-third/5 text-left"
           >
             <div className="flex items-center gap-4">
